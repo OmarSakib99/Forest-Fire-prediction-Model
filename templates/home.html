@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <body>
+        <main>
+            <h1>Forest Fire Prediction</h1>
+            <form action="/predictdata" method="POST">
+                <label for="temperature">Temperature at noon (°C)</label>
+                <input type="number" id="temperature" name="Temperature" min="22" max="42" step="0.1" required>
+
+                <label for="RH">Relative Humidity (%)</label>
+                <input type="number" id="RH" name="RH" min="21" max="90" step="0.1" required>
+
+                <label for="Ws">Wind Speed (km/h)</label>
+                <input type="number" id="Ws" name="Ws" min="6" max="29" step="0.1" required>
+
+                <label for="Rain">Rain (mm)</label>
+                <input type="number" id="Rain" name="Rain" min="0" max="16.8" step="0.1" required>
+
+                <label for="FFMC">Fine Fuel Moisture Code (FFMC)</label>
+                <input type="number" id="FFMC" name="FFMC" min="28.6" max="92.5" step="0.1" required>
+
+                <label for="DMC">Duff Moisture Code (DMC)</label>
+                <input type="number" id="DMC" name="DMC" min="1.1" max="65.9" step="0.1" required>
+
+                <label for="ISI">Initial Spread Index (ISI)</label>
+                <input type="number" id="ISI" name="ISI" min="0" max="18.5" step="0.1" required>
+
+                <label for="Classes">Class</label>
+                <select id="Classes" name="Classes" required>
+                    <option value="not fire">Not Fire</option>
+                    <option value="fire">Fire</option>
+                </select>
+
+                <label for="Region">Region</label>
+                <select id="Region" name="Region" required>
+                    <option value="0">Region 0</option>
+                    <option value="1">Region 1</option>
+                </select>
+
+                <button type="submit">Predict</button>
+            </form>
+            {% if results is not none %}
+                <h2>Predicted FWI: {{ "%.2f"|format(results) }}</h2>
+            {% endif %}
+        </main>
+    </body>
+</html>
